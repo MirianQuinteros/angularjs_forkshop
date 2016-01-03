@@ -24,6 +24,7 @@ En la clase anterior revisamos conceptos de NPM, Grunt, Bower y de la estructura
 **Bonus:**
 
  - Agregale al README tu badge de travis: https://docs.travis-ci.com/user/status-images/)
+ -  [![Build Status](https://travis-ci.org/MirianQuinteros/angularjs_forkshop.svg?branch=master)](https://travis-ci.org/MirianQuinteros/angularjs_forkshop)
 
 ### Paso 3: Grunt 
 
