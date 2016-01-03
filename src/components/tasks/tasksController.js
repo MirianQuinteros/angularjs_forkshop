@@ -17,7 +17,6 @@
             $scope.readAll = function() {
          	   Tasks.read().then(function (tasks) {
             	    $scope.tasks = tasks;
-            	    console.log(tasks);
             	});
         	};
 
