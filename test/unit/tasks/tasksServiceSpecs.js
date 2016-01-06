@@ -40,5 +40,17 @@
             }));
         });
 
+        describe('Post method', function() {
+            it('Should translate post service to http POST method', inject(function(Tasks, $httpBackend) {
+                $httpBackend.when('POST', configMock.mongolab.base_uri + '?apiKey=' + configMock.mongolab.api_key)
+                    .respond( {"data": {"description" : "Nueva tarea"}, "status" : "200" } );
+
+                $httpBackend.flush();
+                expect(Tasks.post('Nueva Tarea')).to.eventually.have.deep.property('status' , '200');
+
+            }));
+
+        });
+
     });
 })();

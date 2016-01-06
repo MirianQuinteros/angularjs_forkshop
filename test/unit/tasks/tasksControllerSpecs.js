@@ -20,11 +20,17 @@
 
             inject(function ($compile, $rootScope, $q) {
                 scope = $rootScope.$new();
+                var taskList=[
+                    { "id" : "565c94a8e4b03d453c995e48" , "description" : "Hacer el Commit inicial" , "status" : "WIP"},
+                    { "id" : "565c94a8e4b03d453c9carlos" , "description" : "Hacer el Commit inicial" , "status" : "WIP"}
+                ];
+                
                 tasksMock.read = function() {
-                    return $q.when([
-                        { "id" : "565c94a8e4b03d453c995e48" , "description" : "Hacer el Commit inicial" , "status" : "WIP"},
-                        { "id" : "565c94a8e4b03d453c9carlos" , "description" : "Hacer el Commit inicial" , "status" : "WIP"}
-                    ]);
+                    return $q.when(taskList);
+                };
+
+                tasksMock.addTask = function() {
+                    taskList.add({ "id" : "565c94a8e4b03d453c9carlos" , "description" : "Hacer el Commit inicial" , "status" : "WIP"});
                 };
             });
         });
@@ -39,6 +45,14 @@
                 $controller('TasksController', {$scope:scope, Tasks: tasksMock});
                 scope.$digest();
                 expect(scope).to.have.property('tasks').with.length(2);
+            }));
+        });
+
+        describe('Adding task', function() {
+            it('Should add a task to the list', inject(function($controller) {
+                $controller('TasksController', {$scope:scope, Tasks: tasksMock});
+                //should call addTask
+                expect(scope).to.have.property('tasks').with.length(3);
             }));
         });
     });
